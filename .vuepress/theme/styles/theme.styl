@@ -12,6 +12,10 @@
   font-weight: normal;
   font-style: normal;
 }
+@font-face {
+  font-family: DINPro-Medium;
+  src: url('../font/DINPro-Medium.ttf');
+}
 html, body
   padding 0
   margin 0
@@ -190,3 +194,22 @@ th, td
       padding-left 0
 
 @require 'mobile.styl'
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+::-webkit-scrollbar-track-piece {
+  background-color: #eee;
+  // -webkit-border-radius: 6px;
+}
+::-webkit-scrollbar-thumb:vertical {
+  height: 0;
+  background-color: #ccc;
+  // -webkit-border-radius: 6px;
+}
+::-webkit-scrollbar-thumb:horizontal {
+  width: 0;
+  background-color: #eee;
+  // -webkit-border-radius: 6px;
+}

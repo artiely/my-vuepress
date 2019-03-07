@@ -1,33 +1,28 @@
 <template>
   <div class="a-main">
-    <article class="a-article">
-      <header>
-        <Navbar v-if="shouldShowNavbar" />
-      </header>
-      <article class="a-list">
-        <vue-waterfall-easy
-          :imgsArr="arr"
-          :imgWidth="300"
-          :maxCols="4"
-          @scrollReachBottom="getData"
-        >
-          <div slot-scope="props">
-            <div class="a-desc">
-              <h1 class="a-title">123</h1>
-              {{props.value.desc}}
-            </div>
-
+    <div class="a-list">
+      <div v-for="item in arr">{{item.desc}}</div>
+    </div>
+    <ClientOnly>
+      <vue-waterfall-easy
+        :imgsArr="arr"
+        :imgWidth="300"
+        :maxCols="4"
+        @scrollReachBottom="getData"
+      >
+        <div slot-scope="props">
+          <div class="last-updated">{{props.value.lastUpdated}}</div>
+          <div class="a-desc">
+            <h1 class="a-title">123</h1>
+            {{props.value.desc}}
           </div>
-        </vue-waterfall-easy>
-      </article>
-    </article>
-    <footer class="a-footer">footer</footer>
+        </div>
+      </vue-waterfall-easy>
+    </ClientOnly>
   </div>
 
 </template>
-
 <script>
-
 import vueWaterfallEasy from 'vue-waterfall-easy'
 import axios from 'axios'
 export default {
@@ -50,7 +45,6 @@ export default {
         v.desc = v.frontmatter.description
         return v
       })
-      console.log('arr', arr)
       return arr
     },
     shouldShowNavbar () {
@@ -81,21 +75,44 @@ export default {
   },
   created () {
     console.log(this.$site)
+    console.log('this,thi', this)
     this.getData()
   }
 }
 </script>
 
 <style lang="stylus">
+.a-list {
+  background: red;
+  opacity: 0;
+}
 .a-main {
-  display: flex;
-  flex-flow: column;
-  min-height: 100vh;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  padding-top: 60px;
+  .vue-waterfall-easy-container {
+    height: 100%;
+  }
   .vue-waterfall-easy-container .vue-waterfall-easy a.img-inner-box {
     background: #fff;
     border-radius: 0 !important;
     overflow: hidden;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1) !important;
+    .last-updated {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 28px;
+      color: rgba(255, 255, 255, 0.3);
+      font-family: DINPro-Medium;
+    }
+    &:hover {
+      .last-updated {
+        color: rgba(0, 0, 0, 0.3);
+      }
+    }
   }
   .a-title {
     font-size: 18px;
@@ -120,6 +137,7 @@ export default {
     }
   }
   .a-list {
+    margin-right: -35px;
     padding-top: 60px;
     background: #ddd;
     position: absolute;

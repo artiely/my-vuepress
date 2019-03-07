@@ -1,5 +1,8 @@
 <template>
   <div class="theme-container">
+    <header>
+      <Navbar v-if="shouldShowNavbar" />
+    </header>
     <componen
       class="main-content"
       :is="layout"
@@ -19,7 +22,23 @@ export default {
       } else {
         return post
       }
-    }
+    },
+    shouldShowNavbar () {
+      const { themeConfig } = this.$site
+      const { frontmatter } = this.$page
+      if (
+        frontmatter.navbar === false
+        || themeConfig.navbar === false) {
+        return false
+      }
+      return (
+        this.$title
+        || themeConfig.logo
+        || themeConfig.repo
+        || themeConfig.nav
+        || this.$themeLocaleConfig.nav
+      )
+    },
   }
 }
 </script>

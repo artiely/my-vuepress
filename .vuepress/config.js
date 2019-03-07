@@ -27,9 +27,12 @@ module.exports = {
         path: '/guide/', // 可选的, 应该是一个绝对路径
         collapsable: false, // 可选的, 默认值是 true,
         sidebarDepth: 1, // 可选的, 默认值是 1
-        children: ['/']
-      },
-      ['/page-b', 'Explicit link text']
+        children: [
+          { text: '指南', link: '' },
+          { text: '第一', link: 'one' },
+          { text: '第二', link: 'two' }
+        ]
+      }
     ]
   }
 }
