@@ -114,9 +114,10 @@ $navbar-horizontal-padding = 1.5rem;
     padding-left: 1.5rem;
     box-sizing: border-box;
     white-space: nowrap;
-    font-size: 0.9rem;
+    font-size: 1rem;
     display: flex;
     color: #999;
+    font-weight: 700;
     .nav-links {
       width: 100%;
     }

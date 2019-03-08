@@ -3,6 +3,7 @@
     <div class="a-list">
       <div v-for="item in arr">{{item.desc}}</div>
     </div>
+    <Menu></Menu>
     <ClientOnly>
       <vue-waterfall-easy
         :imgsArr="arr"
@@ -24,10 +25,12 @@
 </template>
 <script>
 import vueWaterfallEasy from 'vue-waterfall-easy'
+import Menu from '@theme/components/Menu.vue'
 import axios from 'axios'
 export default {
   components: {
-    vueWaterfallEasy
+    vueWaterfallEasy,
+    Menu
   },
   data () {
     return {

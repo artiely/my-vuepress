@@ -31,6 +31,7 @@
     "markdown-it-task-lists": "^2.1.1",
     "node-polyglot": "^2.3.0",
     "raw-loader": "^0.5.1",
+    "vue-burger-menu": "^2.0.1",
     "vue-waterfall": "^1.0.6",
     "vue-waterfall-easy": "^2.4.3",
     "vuepress-plugin-flowchart": "^1.4.2",
