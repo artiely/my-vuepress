@@ -15,10 +15,23 @@
     </div> -->
     <div class="v-menu">
       <a-menu :selectedKeys="current" mode="horizontal" theme="dark">
-        <a-menu-item :key="item.link" v-for="(item,i) in userLinks" class="a-menu-item" @click.native="linkTo(item)">
-          {{item.text}}
-          <!-- <span>{{item.lang}}</span> -->
-        </a-menu-item>
+        <template v-for="(item,i) in userLinks">
+          <template v-if="item.items.length">
+          <a-sub-menu >
+            <span slot="title" class="submenu-title-wrapper">
+              <a-icon type="setting" />Navigation Three - Submenu</span>
+            <a-menu-item key="setting:1">Option 1</a-menu-item>
+            <a-menu-item key="setting:2">Option 2</a-menu-item>
+          </a-sub-menu>
+          </template>
+          <template v-else>
+          <a-menu-item :key="item.link"  class="a-menu-item" @click.native="linkTo(item)">
+            {{item.text}}
+            <!-- <span>{{item.lang}}</span> -->
+          </a-menu-item>
+          </template>
+
+        </template>
       </a-menu>
     </div>
   </div>
@@ -27,7 +40,7 @@
 
 <script>
 import DropdownLink from '@theme/components/DropdownLink.vue'
-import { resolveNavLinkItem ,filterPath} from '../util'
+import { resolveNavLinkItem, filterPath } from '../util'
 import NavLink from '@theme/components/NavLink.vue'
 
 export default {
@@ -42,11 +55,12 @@ export default {
     userNav() {
       return this.$themeLocaleConfig.nav || this.$site.themeConfig.nav || []
     },
-     current() {
+    current() {
       let index = ''
-      this.$themeConfig.nav.map((v,i) => {
+      this.$themeConfig.nav.map((v, i) => {
+        // let link = v.items
         if (filterPath(v.link) === filterPath(this.$route.path)) {
-          index =  v.link
+          index = v.link
         }
       })
       return [index]
@@ -118,7 +132,6 @@ export default {
   },
   methods: {
     linkTo(item) {
-      console.log('item', item)
       this.$router.push({ path: item.link })
     }
   }

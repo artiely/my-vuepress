@@ -21,37 +21,30 @@
         <a-layout-content>
           <Menu />
           <div class="my-container">
-            
+
             <div class="my-content" @touchstart="onTouchStart" @touchend="onTouchEnd">
-              <div style="max-width:740px;margin:0 auto;">
-                <h1>{{currPage.title}}</h1>
+              <div style="max-width:740px;margin:0 auto;padding:40px">
+               
                 <div style="display:flex">
-                  <div style="flex:1"> <img style="width:80%"  :src="$withBase('../'+currPage.frontmatter.poster) " ></div>
-                <div style="flex:1">
-                  {{currPage.frontmatter.createDate}}
-                  {{currPage.lastUpdated}}
-                  {{currPage}}
+                  <div style="flex:1"> <img style="width:80%" :src="$withBase('../'+currPage.frontmatter.poster) "></div>
+                  <div style="flex:1">
+                     <h1>{{currPage.title}}</h1>
+                     <p>{{currPage.frontmatter.createDate}} </p>
+                    <p>{{currPage.lastUpdated}} </p>
+                    <p>{{currPage.frontmatter.description}}</p>
+                    <!-- {{currPage}} -->
+                  </div>
                 </div>
-                </div>
-                
-              
+
               </div>
-              
+
               <Content :custom="false" />
               <div>
                 <!-- <Home v-if="$page.frontmatter.home"/> -->
-                <Page
-      :sidebar-items="sidebarItems"
-    >
-      <slot
-        name="page-top"
-        slot="top"
-      />
-      <slot
-        name="page-bottom"
-        slot="bottom"
-      />
-    </Page>
+                <Page :sidebar-items="sidebarItems">
+                  <slot name="page-top" slot="top" />
+                  <slot name="page-bottom" slot="bottom" />
+                </Page>
               </div>
             </div>
           </div>
@@ -78,7 +71,8 @@ import Page from '@theme/components/Page.vue'
 // }
 export default {
   components: {
-    Menu,Page
+    Menu,
+    Page
   },
   data() {
     return {
@@ -95,7 +89,7 @@ export default {
       })
       return arr[0]
     },
-    currPage(){
+    currPage() {
       return this.$page
     },
     currArr() {
@@ -117,8 +111,12 @@ export default {
         var left = []
         var right = []
         for (var i = 0; i < arr.length; i++) {
-          let createDate = arr[i].createDate?arr[i].createDate:arr[i].lastUpdated
-          let createDate2 = pivot.createDate?pivot.createDate:pivot.lastUpdated
+          let createDate = arr[i].createDate
+            ? arr[i].createDate
+            : arr[i].lastUpdated
+          let createDate2 = pivot.createDate
+            ? pivot.createDate
+            : pivot.lastUpdated
           let valueOf = moment(createDate).valueOf()
           let valueOf2 = moment(createDate2).valueOf()
           if (valueOf < valueOf2) {
@@ -127,22 +125,34 @@ export default {
             right.push(arr[i])
           }
         }
-      return quickSort(left).concat([pivot], quickSort(right));
+        return quickSort(left).concat([pivot], quickSort(right))
       }
       let sortArr = quickSort(arr)
-      console.log('sortArr',sortArr)
+      console.log('sortArr', sortArr)
       return sortArr.reverse()
     },
     currLink() {
       return '/' + filterPath(this.$route.path, 1)
     },
     sidebarItems() {
-      return resolveSidebarItems(
+      console.log(
+        'this.$page,',
+        this.$page,
+        'this.$page.regularPath,',
+        this.$page.regularPath,
+        'this.$site,',
+        this.$site,
+        'this.$localePath',
+        this.$localePath
+      )
+      let items = resolveSidebarItems(
         this.$page,
         this.$page.regularPath,
         this.$site,
         this.$localePath
       )
+      console.log('------------', items)
+      return items
     },
     sliderBar() {
       let currPath = this.$route.path.split('/').filter(v => {
@@ -239,6 +249,7 @@ export default {
   created() {
     console.log('>>>>>', this.$themeConfig)
     console.log('>>>>>', this.$site.pages)
+    console.log('>>>>>', this.sidebarItems)
   }
 }
 </script>

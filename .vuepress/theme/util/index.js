@@ -124,14 +124,21 @@ export function resolveSidebarItems (page, regularPath, site, localePath) {
 
   const pageSidebarConfig = page.frontmatter.sidebar || localeConfig.sidebar || themeConfig.sidebar
   if (pageSidebarConfig === 'auto') {
+    console.log('resolveHeaders(page)',resolveHeaders(page))
     return resolveHeaders(page)
   }
 
   const sidebarConfig = localeConfig.sidebar || themeConfig.sidebar
+
+  console.log('sidebarConfig',sidebarConfig)
+  console.log('regularPath',regularPath)
   if (!sidebarConfig) {
     return []
   } else {
     const { base, config } = resolveMatchingConfig(regularPath, sidebarConfig)
+
+    console.log('<<<<<<<<<<<<<<',base,config)
+
     return config
       ? config.map(item => resolveItem(item, pages, base))
       : []

@@ -79,25 +79,28 @@ export default {
     },
 
     prev () {
-      const prev = this.$page.frontmatter.prev
-      if (prev === false) {
-        return
-      } else if (prev) {
-        return resolvePage(this.$site.pages, prev, this.$route.path)
-      } else {
-        return resolvePrev(this.$page, this.sidebarItems)
-      }
+      // const prev = this.$page.frontmatter.prev
+      // if (prev === false) {
+      //   return
+      // } else if (prev) {
+      //   return resolvePage(this.$site.pages, prev, this.$route.path)
+      // } else {
+      //   return resolvePrev(this.$page, this.sidebarItems)
+      // }
+      return resolvePrev(this.$page, this.sidebarItems)
     },
 
     next () {
-      const next = this.$page.frontmatter.next
-      if (next === false) {
-        return
-      } else if (next) {
-        return resolvePage(this.$site.pages, next, this.$route.path)
-      } else {
-        return resolveNext(this.$page, this.sidebarItems)
-      }
+      // const next = this.$page.frontmatter.next
+      // if (next === false) {
+      //   return
+      // } else if (next) {
+      //   return resolvePage(this.$site.pages, next, this.$route.path)
+      // } else {
+      //   return resolveNext(this.$page, this.sidebarItems)
+      // }
+      // console.log('***********',this.sidebarItem)
+       return resolveNext(this.$page, this.sidebarItems)
     },
 
     editLink () {
@@ -175,6 +178,7 @@ function resolveNext (page, items) {
 function find (page, items, offset) {
   const res = []
   flatten(items, res)
+  console.log('//////////////',res)
   for (let i = 0; i < res.length; i++) {
     const cur = res[i]
     if (cur.type === 'page' && cur.path === decodeURIComponent(page.path)) {
