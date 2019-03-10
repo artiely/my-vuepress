@@ -23,7 +23,7 @@
     "autosize": "^4.0.2",
     "axios": "^0.18.0",
     "date-fns": "^1.29.0",
-    "element-ui": "^2.6.1",
+    "dayjs": "^1.8.9",
     "github-markdown-css": "^2.10.0",
     "html2canvas": "^1.0.0-alpha.12",
     "iview": "^3.3.0",

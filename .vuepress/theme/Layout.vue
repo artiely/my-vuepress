@@ -1,7 +1,8 @@
 <template>
   <div class="theme-container">
     <header>
-      <Navbar v-if="shouldShowNavbar" />
+      <!-- <Menu></Menu> -->
+      <!-- <Navbar v-if="shouldShowNavbar" /> -->
     </header>
     <componen
       class="main-content"
@@ -13,7 +14,9 @@
 <script>
 import home from './layouts/Home'
 import post from './layouts/Post'
+
 export default {
+ 
   computed: {
     layout () {
       const { path } = this.$page
@@ -44,5 +47,4 @@ export default {
 </script>
 <style src="prismjs/themes/prism-tomorrow.css"></style>
 <style lang="stylus" src="./styles/theme.styl"></style>
-<style>
-</style>
+

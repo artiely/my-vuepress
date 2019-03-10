@@ -1,7 +1,8 @@
 ---
 title: 指导篇
-description: A very simple way to add structured data to a page.
+description: A very simple 
 poster: img/9.png
+createDate: 2019-3-10 11:24:52
 ---
 
 <!-- more -->
@@ -34,7 +35,8 @@ export default {
 <style></style>
 ```
 
-# 和原生的交互
+
+## 和原生的交互
 
 原生的接口定义在 api 文件夹下,以扫车牌为例：
 src/api/nativeApi

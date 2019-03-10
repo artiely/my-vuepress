@@ -237,3 +237,11 @@ function resolveItem (item, pages, base, groupDepth = 1) {
     }
   }
 }
+
+export function filterPath(pathText,index=0) {
+  return pathText.split('/').filter(s => {
+    if (s) {
+      return s
+    }
+  })[index]
+}

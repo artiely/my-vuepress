@@ -16,6 +16,10 @@
   font-family: DINPro-Medium;
   src: url('../font/DINPro-Medium.ttf');
 }
+*{
+  padding: 0;
+  margin: 0;
+}
 html, body
   padding 0
   margin 0
@@ -196,8 +200,7 @@ th, td
 @require 'mobile.styl'
 
 ::-webkit-scrollbar {
-  width: 0;
-  height: 0;
+  width: 10px;
 }
 ::-webkit-scrollbar-track-piece {
   background-color: #eee;
@@ -205,7 +208,7 @@ th, td
 }
 ::-webkit-scrollbar-thumb:vertical {
   height: 0;
-  background-color: #ccc;
+  background-color: #333;
   // -webkit-border-radius: 6px;
 }
 ::-webkit-scrollbar-thumb:horizontal {

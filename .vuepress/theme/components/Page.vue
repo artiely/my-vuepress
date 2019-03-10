@@ -1,9 +1,5 @@
 <template>
-  <main class="page">
-    <slot name="top"/>
-
-    <Content/>
-
+  <main >
     <footer class="page-edit">
       <div
         class="edit-link"
@@ -164,7 +160,8 @@ export default {
         + path
       )
     }
-  }
+  },
+
 }
 
 function resolvePrev (page, items) {
